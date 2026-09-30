@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | To-Do List</title>
+</head>
+<body>
+    <h2>Daftar Rencana Kerja</h2>
+    <input type="text" id="task" placeholder="Masukan tugas baru">
+    <button id="tambah">Tambah</button>
+
+    <ul id="tasks"></ul>
+    <script>
+        const taskName = document.getElementById("task");
+        const listTask = document.getElementById("tasks");
+
+        function createTask(){
+            const task = taskName.value;
+            if(task === ""){
+                alert('Task tidak boleh kosong');
+                taskName.focus();
+                return;
+            }
+
+            const li = document.createElement('li');
+            li.innerText = task;
+            li.innerHTML = `
+                <span>${task}</span>
+                <button class = "btn-remove">Hapus</button>
+            `
+            listTask.appendChild(li);
+            taskName.value = "";
+
+            // const btnRemove = document.createElement('button');
+            // btnRemove.innerText = "Hapus";
+            // li.appendChild(btnRemove);
+
+            // btnRemove.addEventListener('click', function (){
+            //     li.remove();
+            // });
+        };
+
+        document.getElementById('tambah').addEventListener('click', () => {
+            createTask();
+        });
+
+        taskName.addEventListener('keyup', function (){
+            if(event.key === "Enter"){
+                createTask();
+            }
+        });
+
+        listTasks.addEventListener('click', (e) => {
+            if(e.target.classList.contains("btn-remove")){
+                const li = e.target.parentElement;
+                li.remove();
+            }
+        })
+    </script>
+</body>
+</html>

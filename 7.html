@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- change: ada perubahan terhadap element (select, input) -->
+
+    <h2>Formulir Pendaftaran</h2>
+
+    <label for="">Pilihan Jurusan</label>
+    <select name="" id="jurusan">
+        <option value="">Pilih Jurusan</option>
+        <option value="Web Development">Web Development</option>
+        <option value="Desain Grafis">Desain Grafis</option>
+        <option value="Teknik Jaringan">Teknik Jaringan</option>
+    </select>
+    <br>
+    <br>
+
+    <p id="hasil">Silahkan pilih jurusan terlebih dahulu</p>
+
+    <label for="">
+        <input type="checkbox" name="" id="cekSyarat"> Saya menyetujuai syarat dan ketentuan
+    </label>
+    <button disabled id="btnDaftar">Daftar</button>
+
+    <script>
+        const jurusan = document.getElementById('jurusan');
+        const hasil = document.getElementById('hasil');
+
+        const cekSyarat = document.getElementById('cekSyarat');
+        const btnDaftar = document.getElementById('btnDaftar');
+
+        cekSyarat.addEventListener('change', function(e) {
+            if (e.target.checked){
+                btnDaftar.disabled = false;
+            }else{
+                btnDaftar.disabled = true;
+            }
+        });
+        
+        jurusan.addEventListener('change', function(e) {
+            const jurusanTerpilih = e.target.value;
+
+            if(jurusanTerpilih === ""){
+                hasil.innerText = "Silahkan pilih jurusan terlebih dahulu";
+            }else{
+                hasil.innerText = `Kamu sudah memilih jurusan ${jurusanTerpilih}`;
+            }
+        });
+    </script>
+</body>
+</html>
